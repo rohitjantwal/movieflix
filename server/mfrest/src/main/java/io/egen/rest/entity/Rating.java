@@ -2,12 +2,11 @@ package io.egen.rest.entity;
 
 //import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -30,10 +29,10 @@ public class Rating {
 	
 	private int rating;
 	
-	@OneToOne
+	@ManyToOne
 	private User user;
 	
-	@OneToOne
+	@ManyToOne
 	private Movie movie;
 
 	public String getId() {

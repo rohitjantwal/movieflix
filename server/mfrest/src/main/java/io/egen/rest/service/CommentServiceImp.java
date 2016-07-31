@@ -65,7 +65,7 @@ public class CommentServiceImp implements CommentService {
 			existing.setUser(user);	
 		//}
 		//else{
-			//comment.setId(existing.getId());
+			comment.setId(existing.getId());
 			//return comrepo.updateComment(comment);
 		//}
 		//when/if mapped set it

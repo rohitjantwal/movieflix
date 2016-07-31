@@ -62,10 +62,11 @@ public class RatingServiceImp implements RatingService {
 			existing.setMovie(movie);
 			existing.setUser(user);	
 		}
-		else{
-			rating.setId(existing.getId());
-			return ratrepo.updateRating(rating);
-		}
+		rating.setId(existing.getId());
+//		else{
+//			//rating.setId(existing.getId());
+//			return ratrepo.updateRating(rating);
+//		}
 		return ratrepo.addRating(rating);
 	}
 
