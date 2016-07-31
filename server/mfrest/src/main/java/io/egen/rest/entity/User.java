@@ -13,10 +13,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table
 @NamedQueries ({
-	//@NamedQuery(name="Users.findUserByEmailAndPassword", query="SELECT u FROM User u WHERE u.email = :email AND u.password = :password "),	
-	@NamedQuery(name="User.findByEmailId", query="SELECT e FROM User e WHERE e.email = :pEmail "),
-	@NamedQuery(name="User.findByUserId", query="SELECT e FROM User e WHERE e.id =:pid "),
-	@NamedQuery(name="User.findAll", query="SELECT e FROM User e ORDER BY e.email ASC"),
+	@NamedQuery(name="User.findByEmailId", query="SELECT u FROM User u WHERE u.email =:pEmail "),
+	//@NamedQuery(name="User.findByUserId", query="SELECT e FROM User e WHERE e.id =:pId "),
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u ORDER BY u.email ASC"),
 })
 
 public class User {
@@ -31,10 +30,6 @@ public class User {
 	
 	@Column(unique=true)
 	private String email;
-	
-	//private String password;
-	
-	//private String role;
 	
 	public String getId() {
 		return id;
@@ -55,25 +50,12 @@ public class User {
 		this.lastName = lastName;
 	}
 	
-//	public String getRole() {
-//		return role;
-//	}
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
-	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-//	public String getPassword() {
-//		return password;
-//	}
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
 	
 	@Override
 	public String toString() {

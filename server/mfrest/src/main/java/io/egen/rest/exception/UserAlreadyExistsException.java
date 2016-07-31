@@ -1,5 +1,6 @@
 package io.egen.rest.exception;
 
+
 public class UserAlreadyExistsException extends RuntimeException {
 	/**
 	 * 

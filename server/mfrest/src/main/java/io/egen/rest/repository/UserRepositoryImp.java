@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.egen.rest.entity.User;
 
 @Repository
+@Transactional
 public class UserRepositoryImp implements UserRepository {
 
 	@PersistenceContext
@@ -17,7 +20,7 @@ public class UserRepositoryImp implements UserRepository {
 
 	@Override
 	public List<User> findAll() {
-		javax.persistence.TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
+		TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
 		return query.getResultList();
 	}
 
@@ -28,9 +31,10 @@ public class UserRepositoryImp implements UserRepository {
 
 	@Override
 	public User findByEmailId(String email) {
-		javax.persistence.TypedQuery<User> query = em.createNamedQuery("User.findByEmailId", User.class);
+		TypedQuery<User> query = em.createNamedQuery("User.findByEmailId", User.class);
 		query.setParameter("pEmail", email);
 		List<User> users = query.getResultList();
+		
 		if (users != null && users.size() == 1) {
 			return users.get(0);
 		}
@@ -42,7 +46,7 @@ public class UserRepositoryImp implements UserRepository {
 		em.persist(user);
 		return user;
 	}
-//merge is update
+    //merge is update
 	@Override
 	public User update(User user) {
 		em.merge(user);
