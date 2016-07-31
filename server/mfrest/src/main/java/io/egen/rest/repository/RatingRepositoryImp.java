@@ -35,6 +35,16 @@ public class RatingRepositoryImp implements RatingRepository{
 //			return null;
 //		}
 //	}
+	@Override
+	public List<Rating> findAll() {
+		TypedQuery<Rating> query = em.createNamedQuery("Rating.findAll", Rating.class);
+		return query.getResultList();
+	}
+	
+	@Override
+	public Rating findOne(String id) {
+		return em.find(Rating.class, id);
+	}
 
 	@Override
 	public Rating findRatingByMovieandUser(String movieId, String userId) {

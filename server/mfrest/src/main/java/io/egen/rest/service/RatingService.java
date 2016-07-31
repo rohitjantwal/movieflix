@@ -8,9 +8,13 @@ public interface RatingService {
 
 	public Rating addRating(Rating rating);
 
+	public Rating findOne(String id);
+	
+	public Rating updateRating(String ratingId,Rating rating);
+	
+	public List<Rating> findAll();
 	
 	public List<Rating> findMovieRatingList(String movieid);
-
 	
 	public List<Rating> findUserRatingList(String userid);
 	

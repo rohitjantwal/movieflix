@@ -1,5 +1,9 @@
 package io.egen.rest.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(code=HttpStatus.BAD_REQUEST, reason ="Comment already exists!")
 public class CommentAlreadyExistsException extends RuntimeException{
 
 	/**

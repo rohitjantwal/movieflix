@@ -23,11 +23,23 @@ public class RatingController {
 	@Autowired
 	RatingService ratingService;
 	
+	@RequestMapping(method = RequestMethod.GET, path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Rating findOne(@PathVariable("id") String ratingId) {
+		return ratingService.findOne(ratingId);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Rating> findAll() {
+		return ratingService.findAll();
+		
+	}
+	
 	//user adds rating using userid and movieid
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Rating addRating(@RequestBody Rating rating) {
 		return ratingService.addRating(rating);
 	}
+	
 	//to find rating list for a movie using movieid
 	@RequestMapping(method = RequestMethod.GET, path = "/ratinglist/{movieid}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Rating> findMovieRatingList(@PathVariable("movieid") String movieid) {
@@ -37,6 +49,11 @@ public class RatingController {
 	@RequestMapping(method = RequestMethod.GET, value = " {userId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Rating> findUserRatingList(@PathVariable("userId") String userid) {
 		return ratingService.findUserRatingList(userid);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Rating update(@PathVariable("id") String ratingId, @RequestBody Rating rating) {
+		return ratingService.updateRating(ratingId, rating);
 	}
 	//find average rating on a movie
 	@RequestMapping(method = RequestMethod.GET, path = "{movieid}", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)

@@ -8,6 +8,10 @@ import io.egen.rest.entity.Rating;
 
 public interface RatingRepository {
 	
+	public List<Rating> findAll();
+	
+	public Rating findOne(String id);
+	
 	public Rating addRating(Rating rating);
 
 	public Rating findRatingByMovieandUser(String movieId, String userId);
@@ -15,8 +19,6 @@ public interface RatingRepository {
 	public Rating updateRating(Rating rating);
 
 	public List<Rating> findMovieRatingList(String movieid);
-	
-//	public Rating findRating(Movie movie, User user);
 
 	public List<Rating> findUserRatingList(String userid);
 }
