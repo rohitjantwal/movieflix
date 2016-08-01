@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,9 +16,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Table
 @NamedQueries ({
 @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c "),
-@NamedQuery(name = "Comment.findCommentsOnMovie", query = "SELECT c FROM Comment c WHERE movie_movieId = :pMovieId"),
-@NamedQuery(name = "Comment.findCommentByMovieAndUser", query = "SELECT c FROM Comment c WHERE movie_movieId = :pMovieId and movie_userId= :pUserId")
+@NamedQuery(name = "Comment.findCommentsOnMovie", query = "SELECT c FROM Comment c WHERE movie = :pMovie"),
+@NamedQuery(name = "Comment.findCommentByMovieAndUser", query = "SELECT c FROM Comment c WHERE c.movie = :pMovie and c.user= :pUser")
 })
+
 public class Comment {
 
 	@Id
@@ -30,7 +32,7 @@ public class Comment {
 	@ManyToOne
 	private Movie movie;
 	
-	@ManyToOne(cascade=CascadeType.REMOVE)
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private User user;
 
 	public String getId() {

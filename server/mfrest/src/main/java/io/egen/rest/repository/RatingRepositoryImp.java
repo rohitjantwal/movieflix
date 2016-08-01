@@ -8,8 +8,9 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-
+import io.egen.rest.entity.Movie;
 import io.egen.rest.entity.Rating;
+import io.egen.rest.entity.User;
 
 
 @Repository
@@ -47,9 +48,9 @@ public class RatingRepositoryImp implements RatingRepository{
 	}
 
 	@Override
-	public Rating findRatingByMovieandUser(String movieId, String userId) {
+	public Rating findRatingByMovieandUser(Movie movie, User user) {
 		TypedQuery<Rating> query = em.createNamedQuery("Rating.findRatingByMovieAndUser",Rating.class);
-		query.setParameter("pMovieId", movieId).setParameter("pUserId", userId);
+		query.setParameter("pMovie", movie).setParameter("pUser", user);
 		List<Rating> rating = query.getResultList();
 		if (rating != null && rating.size() == 1) {
 			return rating.get(0);
@@ -70,9 +71,9 @@ public class RatingRepositoryImp implements RatingRepository{
 //	}
 
 	@Override
-	public List<Rating> findMovieRatingList(String movieid) {
+	public List<Rating> findMovieRatingList(Movie movie) {
 		TypedQuery<Rating> query = em.createNamedQuery("Rating.findMovieRatingList", Rating.class);
-		query.setParameter("pMovieid", movieid);
+		query.setParameter("pMovie", movie);
 		List<Rating> ratings = query.getResultList();
 		
 		if (ratings.size() > 0) {
@@ -82,9 +83,9 @@ public class RatingRepositoryImp implements RatingRepository{
 	}
 
 	@Override
-	public List<Rating> findUserRatingList(String userid) {
+	public List<Rating> findUserRatingList(User user) {
 		TypedQuery<Rating> query = em.createNamedQuery("Rating.findUserRatingList", Rating.class);
-		query.setParameter("pUserid", userid);
+		query.setParameter("pUser", user);
 		List<Rating> ratings = query.getResultList();
 		
 		if (ratings.size() > 0) {

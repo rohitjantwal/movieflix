@@ -53,20 +53,15 @@ public class RatingServiceImp implements RatingService {
 		String userId = rating.getUser().getId();
 		Movie movie = movieService.findById(movieId);
 		User user = userService.findByUserId(userId);
-		//check if comment from this user on this movie already exists
-		//Comment com = findCommentByMovieandUser(movie, user);
-		Rating existing = ratrepo.findRatingByMovieandUser(movieId, userId);
-		//map the comment
-		if (existing == null) {
-			existing = new Rating();
-			existing.setMovie(movie);
-			existing.setUser(user);	
+		Rating existing = ratrepo.findRatingByMovieandUser(movie, user);
+		if (existing != null) {
+			return null;
+			//throw new RatingAlreadyExistsException("Rating for this movie already exists.");
 		}
-		rating.setId(existing.getId());
-//		else{
-//			//rating.setId(existing.getId());
-//			return ratrepo.updateRating(rating);
-//		}
+		else{
+		rating.setMovie(movie);
+		rating.setUser(user);	
+		}
 		return ratrepo.addRating(rating);
 	}
 
@@ -83,7 +78,8 @@ public class RatingServiceImp implements RatingService {
 	
 	@Override
 	public List<Rating> findMovieRatingList(String movieid) {
-		List<Rating> ratings=ratrepo.findMovieRatingList(movieid);
+		Movie movie = movieService.findById(movieid);
+		List<Rating> ratings=ratrepo.findMovieRatingList(movie);
 		if(ratings.size() ==0){
 			throw new RatingNotFoundException("No Ratings found for any movie!");}
 		else{
@@ -92,7 +88,8 @@ public class RatingServiceImp implements RatingService {
 
 	@Override
 	public List<Rating> findUserRatingList(String userid) {
-		List<Rating> ratings=ratrepo.findUserRatingList(userid);
+		User user = userService.findByUserId(userid);
+		List<Rating> ratings=ratrepo.findUserRatingList(user);
 		if(ratings.size() ==0){
 			throw new RatingNotFoundException("No ratings found for user id " + userid);}
 		else{

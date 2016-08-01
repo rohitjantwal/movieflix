@@ -47,41 +47,25 @@ public class CommentServiceImp implements CommentService {
 	public Comment addComment(Comment comment) {
 		String movieId = comment.getMovie().getId();
 		String userId = comment.getUser().getId();
-		//String scomment = comment.getComment();
-		
-		//check if comment from this user on this movie already exists
-		//Comment com = findCommentByMovieandUser(movie, user);
-		Comment existing = comrepo.findCommentByMovieandUser(movieId, userId);
-		
-		//map the comment
-		if (existing == null) {
-			throw new CommentAlreadyExistsException("Comment for this movie already exists.");
-		}
-			//existing = new Comment();
-		else{
 		Movie movie = movieService.findById(movieId);
 		User user = userService.findByUserId(userId);
-			existing.setMovie(movie);
-			existing.setUser(user);	
-		//}
-		//else{
-			comment.setId(existing.getId());
-			//return comrepo.updateComment(comment);
-		//}
-		//when/if mapped set it
-		//existing.setComment(scomment);
-		return comrepo.addComment(comment);
+		Comment existing = comrepo.findCommentByMovieandUser(movie, user);
+		if (existing!=null)
+		{
+			throw new CommentAlreadyExistsException("Comment for this movie already exists.");
 		}
+		else {
+			comment.setMovie(movie);
+			comment.setUser(user);	
+			}
+		return comrepo.addComment(comment);
+		
 	}
-	
-//	@Override
-//	public Comment findCommentByMovieandUser(Movie movie, User user) {
-//		return comrepo.findCommentByMovieandUser(movie,user);
-//	}
 
 	@Override
 	public List<Comment> findCommentsOnMovie(String movieId) {
-		return comrepo.findCommentsOnMovie(movieId);
+		Movie movie = movieService.findById(movieId);
+		return comrepo.findCommentsOnMovie(movie);
 	}
 
 //	@Override

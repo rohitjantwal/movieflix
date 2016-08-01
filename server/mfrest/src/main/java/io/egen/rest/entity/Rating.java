@@ -1,5 +1,6 @@
 package io.egen.rest.entity;
 
+import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -14,9 +16,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table
 @NamedQueries({
-@NamedQuery(name = "Rating.findMovieRatingList", query = "SELECT r FROM Rating r WHERE movie_movieId = :pMovieid"),
-@NamedQuery(name = "Rating.findUserRatingList", query = "SELECT r FROM Rating r WHERE user_userId = :pUserid"),
-@NamedQuery(name = "Rating.findRatingByMovieAndUser", query = "SELECT r FROM Rating r WHERE movie_movieId = :pMovieId and user_userId= :pUserId")
+@NamedQuery(name = "Rating.findMovieRatingList", query = "SELECT r FROM Rating r WHERE movie = :pMovie"),
+@NamedQuery(name = "Rating.findUserRatingList", query = "SELECT r FROM Rating r WHERE user = :pUser"),
+@NamedQuery(name = "Rating.findRatingByMovieAndUser", query = "SELECT r FROM Rating r WHERE movie = :pMovie and user= :pUser")
 
 })
 
@@ -29,7 +31,7 @@ public class Rating {
 	
 	private int rating;
 	
-	@ManyToOne
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private User user;
 	
 	@ManyToOne

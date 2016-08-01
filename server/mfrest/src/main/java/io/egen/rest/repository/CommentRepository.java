@@ -3,10 +3,12 @@ package io.egen.rest.repository;
 import java.util.List;
 
 import io.egen.rest.entity.Comment;
+import io.egen.rest.entity.Movie;
+import io.egen.rest.entity.User;
 
 public interface CommentRepository {
 	
-	public Comment findCommentByMovieandUser(String movieId,String userId);
+	public Comment findCommentByMovieandUser(Movie movie, User user);
 	
 	public List<Comment> findAll();
 	
@@ -18,5 +20,5 @@ public interface CommentRepository {
 	
 	public void deleteComment(Comment com);
 
-	public List<Comment> findCommentsOnMovie(String movieId);
+	public List<Comment> findCommentsOnMovie(Movie movie);
 }

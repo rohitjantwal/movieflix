@@ -38,6 +38,7 @@ public class CommentController {
 	
 	@RequestMapping(method = RequestMethod.GET, path = "{movieid}", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Comment> findCommentsOnMovie(@PathVariable("movieid") String movieId) {
+		
 		return commentService.findCommentsOnMovie(movieId);
 	}
 	
