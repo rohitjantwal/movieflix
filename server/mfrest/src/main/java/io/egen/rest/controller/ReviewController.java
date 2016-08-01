@@ -53,17 +53,8 @@ public class ReviewController {
 	
 	//find average rating on a movie
 	@RequestMapping(method = RequestMethod.GET, path = "movie/{movieid}", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
-	public int findMovieReview(@PathVariable("movieid") String movieId) {
-		List<Review> reviews = reviewService.findMovieReviewList(movieId);
-		
-		int ratingAvg = 0;
-		if (reviews != null) {
-			for (Review review : reviews) {
-				ratingAvg += review.getRating();
-			}
-			ratingAvg = (ratingAvg / reviews.size());
-		}
-		return ratingAvg;
+	public int findAvgMovieReview(@PathVariable("movieid") String movieId) {
+		return reviewService.findAvgMovieReviewList(movieId);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

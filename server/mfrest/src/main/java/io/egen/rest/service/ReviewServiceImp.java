@@ -87,6 +87,7 @@ public class ReviewServiceImp implements ReviewService{
 		}
 	}
 
+	@Transactional
 	@Override
 	public Review updateReview(String reviewId, Review review) {
 		String movieId = review.getMovie().getId();
@@ -107,7 +108,8 @@ public class ReviewServiceImp implements ReviewService{
 			}
 		return repo.updateReview(review);
 	}
-
+	
+	@Transactional
 	@Override
 	public void deleteReview(String id) {
 		Review existing = repo.findOne(id);
@@ -115,6 +117,19 @@ public class ReviewServiceImp implements ReviewService{
 			throw new ReviewNotFoundException("Review with id:" + id + " not found");
 		}
 		repo.deleteReview(existing);
+	}
+
+	@Override
+	public int findAvgMovieReviewList(String movieId) {
+	List<Review> reviews = findMovieReviewList(movieId);
+		int ratingAvg = 0;
+		if (reviews != null) {
+			for (Review review : reviews) {
+				ratingAvg += review.getRating();
+			}
+			ratingAvg = (ratingAvg / reviews.size());
+		}
+		return ratingAvg;
 	}
 
 }

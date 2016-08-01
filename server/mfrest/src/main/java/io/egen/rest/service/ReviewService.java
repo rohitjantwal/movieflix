@@ -21,4 +21,7 @@ public interface ReviewService {
 	public Review updateReview(String reviewid, Review review);
 	
 	public void deleteReview(String id);
+	
+	public int findAvgMovieReviewList(String movieId);
+
 }
