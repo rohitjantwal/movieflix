@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import io.egen.rest.entity.Movie;
 import io.egen.rest.entity.Review;
 import io.egen.rest.entity.User;
-import io.egen.rest.exception.CommentAlreadyExistsException;
-import io.egen.rest.exception.CommentNotFoundException;
-import io.egen.rest.exception.RatingNotFoundException;
+import io.egen.rest.exception.ReviewNotFoundException;
 import io.egen.rest.repository.ReviewRepository;
 
 @Service
@@ -62,7 +60,7 @@ public class ReviewServiceImp implements ReviewService{
 	public Review findOne(String reviewId) {
 		Review existing = repo.findOne(reviewId);
 		if (existing == null) {
-			throw new CommentNotFoundException("Comment with id:" + reviewId + " not found");
+			throw new ReviewNotFoundException("Review with id:" + reviewId + " not found");
 		}
 		return existing;
 	}
@@ -72,7 +70,7 @@ public class ReviewServiceImp implements ReviewService{
 		Movie movie = movieService.findById(movieId);
 		List<Review> reviews=repo.findMovieReviewList(movie);
 		if(reviews.size() ==0){
-			throw new RatingNotFoundException("No Ratings found for any movie!");}
+			throw new ReviewNotFoundException("No reviews found for movieId" + movieId);}
 		else{
 		return repo.findMovieReviewList(movie);
 		}
@@ -83,7 +81,7 @@ public class ReviewServiceImp implements ReviewService{
 		User user = userService.findByUserId(userid);
 		List<Review> reviews = repo.findUserReviewList(user);
 		if(reviews.size() ==0){
-			throw new RatingNotFoundException("No ratings found for user id " + userid);}
+			throw new ReviewNotFoundException("No reviews found for user id " + userid);}
 		else{
 		return repo.findUserReviewList(user);
 		}
@@ -97,7 +95,7 @@ public class ReviewServiceImp implements ReviewService{
 		//Review existing = repo.findReviewByMovieandUser(movie, user);
 		if (existing ==null)
 		{	
-			throw new CommentAlreadyExistsException("Comment for this movie already exists.");
+			throw new ReviewNotFoundException("Review with id:" + reviewId + " not found");
 		}
 		else {
 			Movie movie = movieService.findById(movieId);
@@ -114,7 +112,7 @@ public class ReviewServiceImp implements ReviewService{
 	public void deleteReview(String id) {
 		Review existing = repo.findOne(id);
 		if(existing==null){
-			throw new CommentNotFoundException("Comment with id:" + id + " not found");
+			throw new ReviewNotFoundException("Review with id:" + id + " not found");
 		}
 		repo.deleteReview(existing);
 	}
