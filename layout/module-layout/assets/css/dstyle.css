@@ -1,0 +1,82 @@
+.uppermargin{
+    margin-top: 6em;
+    /*margin-top: auto;*/
+}
+.littlemargintop{
+    margin-top: auto;
+    padding: 5px;
+}
+.littlemarginbelow{
+    margin-bottom: 1em;
+}
+
+/*new block for search results*/
+.easy-block-v2 {
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    box-shadow: 2px 2px 6px #8c8c8c;
+    border-radius: 2px;
+}
+
+.easy-block-v2 .box {
+    padding: 10px;
+    background: #fff;
+}
+
+.easy-container{
+    box-sizing: border-box;
+    /*width: 40em;*/
+    /*float: left;*/
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.easy-block-v2 img {
+    height: 15em;
+    margin: 0 auto;
+    padding-right:2em;
+    /*vertical-align: middle;*/
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    float: left;
+}
+img {
+    vertical-align: middle;
+}
+
+.title-box-v2 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.rounded {
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 8px 16px;
+    transition: linear .1s;
+}
+
+.parallax-pro a.btn-primary {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #bdbcc4;
+}
+
+
+.form-control{
+    height: 34px;
+    padding: 6px 12px;
+}
+.form-control:focus {
+    border-color: #9cccff;
+    box-shadow: 0 0 5px #19B5FE;
+}
