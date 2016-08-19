@@ -1,0 +1,92 @@
+.uppermargin{
+    margin-top: 5em;
+    /*margin-top: auto;*/
+}
+.left-margin{
+    margin-left: 2em;
+}
+.littlemargintop{
+    margin-top: auto;
+    padding: 5px;
+}
+.littlemarginbelow{
+    margin-bottom: 1em;
+}
+.tim-title{
+    margin-left:1em;
+}
+/*new block for search results*/
+.easy-block-v2 {
+    position: relative;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    box-shadow: 2px 2px 6px #8c8c8c;
+    border-radius: 2px;
+    min-height: 30em;
+}
+
+.easy-block-v2 .box {
+    padding: 10px;
+    background: #fff;
+}
+
+.easy-container{
+    box-sizing: border-box;
+    /*width: 40em;*/
+    /*float: left;*/
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.easy-block-v2 img {
+    /*height: 15em;*/
+    margin: 0 auto;
+    /*padding-right:2em;*/
+    /*vertical-align: middle;*/
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    float: left;
+}
+img {
+    vertical-align: middle;
+}
+
+.title-box-v2 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.rounded {
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 8px 16px;
+    transition: linear .1s;
+}
+
+.parallax-pro a.btn-primary {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #bdbcc4;
+}
+
+.easy-container1{
+    box-sizing: border-box;
+    width: 100%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.icon-calendar:before {
+    content: "\1f4c5";
+}
